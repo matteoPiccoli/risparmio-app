@@ -27,16 +27,16 @@ lib/
 │   ├── utils/                  # Formatters, extensions, helpers
 │   └── widgets/                # Reusable UI components (buttons, cards)
 ├── features/                   # Modular feature-based structure
-│   ├── expense/
+│   ├── transaction/
 │   │   ├── domain/             # Pure business logic (no imports from Flutter)
-│   │   │   ├── entities/       # Core models: Expense, Category
-│   │   │   └── repositories/   # Abstract interfaces (e.g., ExpenseRepository)
+│   │   │   ├── entities/       # Core models: Transaction, Category
+│   │   │   └── repositories/   # Abstract interfaces (e.g., TransactionRepository)
 │   │   ├── data/               # DB layer (sqflite or drift)
-│   │   │   ├── models/         # ExpenseModel (for serialization)
+│   │   │   ├── models/         # TransactionModel (for serialization)
 │   │   │   ├── datasources/    # SQLite service, local data provider
 │   │   │   └── repositories/   # Concrete repo implementing domain interface
 │   │   └── presentation/       # UI + state management
-│   │       ├── view/           # Screens (ExpenseListScreen, AddExpenseScreen)
+│   │       ├── view/           # Screens (TransactionListScreen, AddTransactionScreen)
 │   │       ├── view_model/     # State management (e.g., Riverpod, Provider)
 │   │       └── widgets/        # Feature-specific widgets
 │   ├── reports/
@@ -49,30 +49,30 @@ lib/
 
 
 features/
-└── expense/
+└── transaction/
     ├── domain/
     │   ├── entities/
-    │   │   └── expense.dart         # class Expense { final double amount; ... }
+    │   │   └── transaction.dart         # class Transaction { final double amount; ... }
     │   └── repositories/
-    │       └── expense_repository.dart  # abstract class ExpenseRepository
+    │       └── transaction_repository.dart  # abstract class TransactionRepository
     ├── data/
     │   ├── models/
-    │   │   └── expense_model.dart   # ExpenseModel for SQLite (toMap/fromMap)
+    │   │   └── transaction_model.dart   # TransactionModel for SQLite (toMap/fromMap)
     │   ├── datasources/
-    │   │   └── expense_db.dart      # LocalDatabase (sqflite, drift, etc.)
+    │   │   └── transaction_db.dart      # LocalDatabase (sqflite, drift, etc.)
     │   └── repositories/
-    │       └── expense_repository_impl.dart # Implements ExpenseRepository
+    │       └── transaction_repository_impl.dart # Implements TransactionRepository
     └── presentation/
         ├── view/
-        │   └── expense_list_screen.dart
+        │   └── transaction_list_screen.dart
         ├── view_model/
-        │   └── expense_view_model.dart     # State logic (Notifier, ChangeNotifier)
+        │   └── transaction_view_model.dart     # State logic (Notifier, ChangeNotifier)
         └── widgets/
-            └── expense_card.dart
+            └── transaction_card.dart
 
 test/
 ├── features/
-│   ├── expense/
+│   ├── transaction/
 │   │   ├── view_model/
 │   │   ├── widgets/
 │   │   └── integration/
