@@ -42,6 +42,24 @@ class Category {
     required this.name,
     required this.type
   });
+
+  /// Converts a Category to a Map (for DB insertion)
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'type': type.name, // Store as string ("income"/"expense")
+    };
+  }
+
+  /// Converts a DB row to a Category (for DB retrieval)
+  factory Category.fromMap(Map<String, dynamic> map) {
+    return Category(
+      id: map['id'],
+      name: map['name'],
+      type: TransactionType.values.firstWhere((e) => e.name == map['type']),
+    );
+  }
 }
 
 // Internal UUID generator for category IDs.
