@@ -33,7 +33,7 @@ class Transaction {
     required String description,
     required DateTime date,
     required String categoryId,
-    required TransactionType type,
+    required TransactionType type
   }) {
     return Transaction._internal(
       id: _uuid.v4(),
@@ -41,7 +41,7 @@ class Transaction {
       description: description,
       date: date,
       categoryId: categoryId,
-      type: type,
+      type: type
     );
   }
 
@@ -52,7 +52,7 @@ class Transaction {
     required this.description,
     required this.date,
     required this.categoryId,
-    required this.type,
+    required this.type
   });
 }
 
@@ -63,6 +63,9 @@ enum TransactionType {
 
   /// An expense (e.g., groceries, bills).
   expense,
+
+  /// A saving (e.g, investing, stocks).
+  saving
 }
 
 // Internal UUID generator for transaction IDs.
