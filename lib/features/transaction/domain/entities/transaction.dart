@@ -1,33 +1,52 @@
-/// A financial transaction: either an expense or an income.
-/// 
-/// Each transaction is linked to a category and has a type
-/// (`TransactionType.income` or `TransactionType.expense`).
+import 'package:uuid/uuid.dart';
 
-enum TransactionType {
-  income,
-  expense,
-}
-
+/// Represents a financial transaction, either an income or an expense.
+///
+/// Each transaction has an amount, description, date, category, and type.
+/// The [TransactionType] indicates whether it's money in or out.
+/// An auto-generated UUID is used to uniquely identify each transaction.
 class Transaction {
-  /// Unique ID for the transaction
+  /// Unique ID for this transaction (auto-generated).
   final String id;
 
-  /// Positive amount of money for the transaction
+  /// Positive amount of money involved in the transaction.
   final double amount;
 
-  /// Optional description (e.g., "Lunch at McDonald's")
+  /// Optional description of the transaction (e.g., "Lunch at McDonald's").
   final String description;
 
-  /// Date and time of the transaction
+  /// Date and time the transaction occurred.
   final DateTime date;
 
-  /// ID of the category this transaction belongs to
+  /// The ID of the category this transaction belongs to (e.g., "food", "salary").
   final String categoryId;
 
-  /// Indicates if the transaction is an income or an expense
+  /// Whether the transaction is an [TransactionType.income] or [TransactionType.expense].
   final TransactionType type;
 
-  Transaction({
+  /// Creates a new transaction with a unique ID.
+  ///
+  /// Use this factory when you want to create a new transaction without
+  /// manually specifying the `id`. This is the main way to construct a transaction.
+  factory Transaction.create({
+    required double amount,
+    required String description,
+    required DateTime date,
+    required String categoryId,
+    required TransactionType type,
+  }) {
+    return Transaction._internal(
+      id: _uuid.v4(),
+      amount: amount,
+      description: description,
+      date: date,
+      categoryId: categoryId,
+      type: type,
+    );
+  }
+
+  /// Internal constructor that takes a specific ID (used by the factory).
+  const Transaction._internal({
     required this.id,
     required this.amount,
     required this.description,
@@ -35,22 +54,16 @@ class Transaction {
     required this.categoryId,
     required this.type,
   });
-
-  Transaction copyWith({
-    String? id,
-    double? amount,
-    String? description,
-    DateTime? date,
-    String? categoryId,
-    TransactionType? type,
-  }) {
-    return Transaction(
-      id: id ?? this.id,
-      amount: amount ?? this.amount,
-      description: description ?? this.description,
-      date: date ?? this.date,
-      categoryId: categoryId ?? this.categoryId,
-      type: type ?? this.type,
-    );
-  }
 }
+
+/// Type of a financial transaction.
+enum TransactionType {
+  /// An income (e.g., salary, refund).
+  income,
+
+  /// An expense (e.g., groceries, bills).
+  expense,
+}
+
+// Internal UUID generator for transaction IDs.
+final _uuid = Uuid();
