@@ -54,6 +54,28 @@ class Transaction {
     required this.categoryId,
     required this.type
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'amount': amount,
+      'description': description,
+      'date': date.toIso8601String(),
+      'categoryId': categoryId,
+      'type': type.index, // store enum as int
+    };
+  }
+
+  factory Transaction.fromMap(Map<String, dynamic> map) {
+    return Transaction._internal(
+      id: map['id'],
+      amount: map['amount'],
+      description: map['description'],
+      date: DateTime.parse(map['date']),
+      categoryId: map['categoryId'],
+      type: TransactionType.values[map['type']],
+    );
+  }
 }
 
 /// Type of a financial transaction.

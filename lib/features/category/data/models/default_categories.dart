@@ -1,5 +1,5 @@
-import 'package:risparmio/features/transaction/domain/entities/category.dart';
-import 'package:risparmio/features/transaction/domain/entities/transaction.dart';
+import 'package:risparmio/features/category/data/models/category.dart';
+import 'package:risparmio/features/transaction/data/models/transaction.dart';
 
 /// List of default categories. Now are hard-coded, but in the future will be editable from the user.
 

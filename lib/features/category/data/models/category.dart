@@ -1,5 +1,5 @@
 import 'package:uuid/uuid.dart';
-import 'package:risparmio/features/transaction/domain/entities/transaction.dart';
+import 'package:risparmio/features/transaction/data/models/transaction.dart';
 
 /// Represents a category to be assigned to a [Transaction]
 /// 
