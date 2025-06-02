@@ -56,3 +56,17 @@ test/
 ├── data/
 └── utils/
 ```
+
+
+## Current app structure
+
+UI Layer (widgets, screens)
+     ↓
+State Management Layer (e.g., Riverpod providers)
+     ↓
+Repository Layer (TransactionRepository)
+     ↓
+Data Access Layer (TransactionDao)
+     ↓
+Local DB (SQLite via sqflite)
+
