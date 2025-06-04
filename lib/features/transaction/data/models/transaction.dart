@@ -61,7 +61,7 @@ class Transaction {
       'amount': amount,
       'description': description,
       'date': date.toIso8601String(),
-      'categoryId': categoryId,
+      'category_id': categoryId,
       'type': type.index, // store enum as int
     };
   }
@@ -72,7 +72,7 @@ class Transaction {
       amount: map['amount'],
       description: map['description'],
       date: DateTime.parse(map['date']),
-      categoryId: map['categoryId'],
+      categoryId: map['category_id'],
       type: TransactionType.values[map['type']],
     );
   }
