@@ -62,7 +62,7 @@ class Transaction {
       'description': description,
       'date': date.toIso8601String(),
       'category_id': categoryId,
-      'type': type.index, // store enum as int
+      'type': type.name, // Store as string for better readability
     };
   }
 
@@ -73,7 +73,10 @@ class Transaction {
       description: map['description'],
       date: DateTime.parse(map['date']),
       categoryId: map['category_id'],
-      type: TransactionType.values[map['type']],
+      type: TransactionType.values.firstWhere(
+        (e) => e.name == map['type'],
+        orElse: () => TransactionType.expense, // default/fallback type
+      )
     );
   }
 }
